@@ -1,0 +1,43 @@
+Q1
+PHP developers often have a preference for single or double quotes based on personal style or project conventions. Some prefer single quotes for literal strings, especially if the string does not contain variables or special characters, as they are slightly faster in terms of processing speed. Double quotes allow for variable interpolation and escape sequences, making them more versatile in certain situations
+
+
+  
+Q2
+If we forget the semicolon at the end of a PHP statement the PHP processor will typically display a parse error indicating an unexpected end of file for example
+<?php
+echo "Hello, world"  
+?>
+
+
+
+Q3
+page 1
+
+<?php
+echo "This is page 1";
+?>
+
+page 2
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page 2</title>
+</head>
+<body>
+    <h1>Page 2</h1>
+    <?php
+    // Using include
+    include 'page1.php';
+    
+    // Using require
+    require 'page1.php';
+    ?>
+</body>
+</html>
+
+Difference between include and require:
+
+include: If the file specified in include is not found or encounters an error, PHP will emit a warning and continue executing the script
+require: If the file specified in require is not found or encounters an error, PHP will emit a fatal error and halt the script execution
+Using include files is useful for modularizing code, reducing redundancy, and improving maintainability by separating reusable components into separate files. They also facilitate teamwork by allowing multiple developers to work on different parts of a project simultaneously
