@@ -1,0 +1,30 @@
+Q1
+
+global keyword: This is used within a function to access a global variable. When i declare a variable as 
+global within a function, I'm telling PHP to look for that variable in the global scope rather than creating a new local variable with the same name.
+
+$GLOBALS: This is a PHP superglobal array that holds references to all variables which are currently defined in the 
+global scope of the script. It allows accessing global variables directly without needing to use the global keyword within functions.
+
+Q2
+
+No we cannot write the global keyword with capital letters. PHP is case-sensitive
+and keywords like global must be written in lowercase. Writing it in uppercase (GLOBAL) would result in a syntax error
+
+Q3
+
+<?php
+$countries = array(
+    "Italy" => Roma",
+    "UK" => "London",
+    "France" => "Paris",
+    "Germany" => "Berlin",
+    "Japan" => "Tokyo"
+);
+
+arsort($countries);
+
+foreach ($countries as $country => $capital) {
+    echo "$country - $capital <br>";
+}
+?>
