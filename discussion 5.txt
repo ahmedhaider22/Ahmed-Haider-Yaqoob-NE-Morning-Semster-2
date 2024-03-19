@@ -1,0 +1,81 @@
+Q1
+
+GET method:
+
+Sends data in the URL, visible to users (as query parameters).
+Limited data size (typically around 2048 characters).
+Cached by browsers, making it suitable for retrieving data.
+Not suitable for sensitive information (like passwords) due to visibility in the URL.
+Generally used for data retrieval or non-sensitive data submission.
+
+POST method:
+
+Sends data in the HTTP request body, not visible to users directly.
+No data size limit imposed by the HTTP specification (though practical limits exist).
+Not cached by browsers, making it suitable for sensitive information.
+Suitable for submitting forms, especially for sensitive information like passwords.
+Offers better security and privacy compared to GET.
+
+Q2
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Name and Email Form</title>
+</head>
+<body>
+<h2>Enter Names and Emails</h2>
+<form method="GET" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="name1">Name 1:</label>
+    <input type="text" id="name1" name="name1" required><br>
+    <label for="email1">Email 1:</label>
+    <input type="email" id="email1" name="email1" required><br>
+
+    <label for="name2">Name 2:</label>
+    <input type="text" id="name2" name="name2" required><br>
+    <label for="email2">Email 2:</label>
+    <input type="email" id="email2" name="email2" required><br>
+
+    <label for="name3">Name 3:</label>
+    <input type="text" id="name3" name="name3" required><br>
+    <label for="email3">Email 3:</label>
+    <input type="email" id="email3" name="email3" required><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  
+    $names = array($_GET['name1'], $_GET['name2'], $_GET['name3']);
+    $emails = array($_GET['email1'], $_GET['email2'], $_GET['email3']);
+
+    $combined = array_combine($names, $emails);
+
+    ksort($combined);
+
+    echo "<h2>Sorted Names and Emails</h2>";
+    foreach ($combined as $name => $email) {
+        echo "<p>$name - $email</p>";
+    }
+}
+?>
+</body>
+</html>
+
+
+Q3
+
+1- Input Validation: Validate and sanitize user inputs to prevent injection attacks.
+For example, using PHP's filter_var function to validate email addresses or using regular expressions to validate other inputs like email
+
+2- Secure Password Handling: Use strong password policies,
+store passwords securely and implement measures like rate limiting and account lockout to prevent brute force attacks.
+
+3- HTTPS Encryption: Ensure data transmission is encrypted using HTTPS to protect sensitive information from being intercepted during transit.
+
+4- Access Control: Implement proper access control mechanisms to restrict unauthorized access to resources and functionalities within your application.
+
+5- Firewalls and Intrusion Detection/Prevention Systems (IDS/IPS): Deploy firewalls and IDS/IPS solutions to monitor and block malicious traffic,
+helping to prevent attacks before they reach your application.
