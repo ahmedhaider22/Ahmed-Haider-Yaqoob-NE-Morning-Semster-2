@@ -1,0 +1,30 @@
+Q1
+
+It's crucial to close a file after finishing with it to release system resources and ensure data integrity by properly
+flushing any buffered data to disk.
+
+Q2
+
+<?php
+$file = fopen("sentences.txt", "w");
+$sentences = array(
+    "My name is Ahmed Haider",
+    "Computer Engineering Department",
+    "Network Branch",
+    "Morning study",
+    "Welcome to web programming lab."
+);
+foreach ($sentences as $sentence) {
+    fwrite($file, $sentence . PHP_EOL);
+}
+fclose($file);
+$file = fopen("sentences.txt", "r");
+if ($file) {
+    while (($char = fgetc($file)) !== false) {
+        echo $char;
+    }
+    fclose($file);
+} else {
+    echo "Error opening file.";
+}
+?>
